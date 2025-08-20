@@ -19,7 +19,7 @@ declare global {
   const debounce: typeof import('./src/plugins/utils')['debounce']
   const formatDate: typeof import('./src/plugins/utils')['formatDate']
   const forwardRef: typeof import('react')['forwardRef']
-  const http: typeof import('./src/plugins/http')['http']
+  const httpClient: typeof import('./src/plugins/http')['httpClient']
   const lazy: typeof import('react')['lazy']
   const memo: typeof import('react')['memo']
   const slugify: typeof import('./src/plugins/utils')['slugify']

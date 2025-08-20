@@ -15,7 +15,7 @@
     "debounce": true,
     "formatDate": true,
     "forwardRef": true,
-    "http": true,
+    "httpClient": true,
     "lazy": true,
     "memo": true,
     "slugify": true,

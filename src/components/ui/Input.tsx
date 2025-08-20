@@ -1,3 +1,4 @@
+"use client";
 import { cn } from  "@/plugins/utils";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}

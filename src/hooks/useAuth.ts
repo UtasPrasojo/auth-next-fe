@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { api } from '@/plugins/http';
@@ -14,7 +16,9 @@ export const useAuth = () => {
   const router = useRouter();
 
   useEffect(() => {
-    checkAuth();
+    if (typeof window !== 'undefined') {
+      checkAuth();
+    }
   }, []);
 
   const checkAuth = async () => {
@@ -24,11 +28,12 @@ export const useAuth = () => {
         setLoading(false);
         return;
       }
-      
+
       const response = await api.getProfile();
       setUser(response.data);
     } catch (error) {
       localStorage.removeItem('token');
+      setUser(null);
     } finally {
       setLoading(false);
     }
@@ -38,16 +43,16 @@ export const useAuth = () => {
     try {
       const response = await api.login({ email, password });
       const { token, user } = response.data;
-      
+
       localStorage.setItem('token', token);
       setUser(user);
+
       router.push('/dashboard');
-      
       return { success: true };
     } catch (error: any) {
-      return { 
-        success: false, 
-        error: error.response?.data?.message || 'Login failed' 
+      return {
+        success: false,
+        error: error.response?.data?.message || 'Login failed',
       };
     }
   };
